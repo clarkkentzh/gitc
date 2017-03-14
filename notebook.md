@@ -56,11 +56,13 @@ $ git log    //查看提交相关的信息
 4 第四行：提交的信息标题
 5 第五行：提交信息具体内容
 ```
+![](http://p1.bpimg.com/1949/24c08e02fd9b8aec.png)
 ## git diff
 ```sh
 $ git diff    //查看修改的源码
 $ git diff commitID1 commitID2    //两个提交版本之间做比较
 ```
+![](http://p1.bqimg.com/1949/54ff9fc1247145fb.png)
 ## 删除文件
 1. 删除文件后，恢复文件
 ```sh
@@ -86,6 +88,7 @@ $ vim .gitignore    将要忽略的文件名写入.gitignore
 $ git add .
 $ git commit
 ```
+![](http://p1.bpimg.com/1949/edd08aaf6923229a.png)
 
 # Github的基本用法
 1. 注册github账号
@@ -101,10 +104,13 @@ $ git push prigin master
 $ input username
 $ input password
 ```
+![git](http://p1.bqimg.com/1949/2ade38d06f3e0e96.png)
+
 5. 更新本地仓库，与github仓库进行同步，将服务器提交拉取到本地。
 ```sh
 $ git pull
 ```
+![git h](http://p1.bpimg.com/1949/e9e33759a70a44b2.png)
 # MarkDown的基本用法
 ## 1. 标题
 ```sh
