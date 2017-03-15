@@ -47,7 +47,7 @@ $ git commit     //向本地git仓库提交,跟踪文件
 ```
 ## 查看提交信息
 ```sh
-$ git log    //查看提交相关的信息  
+$ git log    //查看提交相关的信息.  
 ```
 ```sh
 1 第一行：commit ID
