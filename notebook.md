@@ -215,13 +215,13 @@ _You_ **can** _commit them_
 ## 4. 网址链接
 ```sh
 参考文献
-* ["网站名"] ("网址")
+* ["书名"] ("网址")
 
 图片
 !["图片名"]("图片的链接")    
 ```
 ### 效果：
-* [百度] (http://www.baidu.com)
+* [Pro Git] (https://git-scm.com/book/en/v2)
 
 ![美女](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489502275724&di=98842843e9cb7283ebc45bdd18d25c1a&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201511%2F15%2F20151115175457_XsWGu.jpeg)
 ## 5. 代码示例
