@@ -85,7 +85,3 @@ int main(int argc,char * argv[]){
 ```
 ![](http://p1.bpimg.com/1949/2b008552acc4f802.png)
 
-
-
-
-
