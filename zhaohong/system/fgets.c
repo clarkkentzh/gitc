@@ -3,18 +3,19 @@
 #include <stdlib.h>
 
 int main(int argc,char * argv[]){
-  char si[100];
-  char sl[100] = "mv ";
+  char buf[100];
+  char direct[100] = "mv ";
   char cl[100] = " ";
-  while(fgets(si,64,stdin) != NULL){
-    si[strlen(si) - 1] = '\0';
-    strcat(sl,si);
-    strcat(sl,cl);
-    strcat(si,"-1");
-    strcat(sl,si);
-    printf("%s\n",sl);
-    system(sl);
-    strcpy(sl,"mv \0");
+  while(fgets(buf,64,stdin) != NULL){
+    printf("%d\n",buf[strlen(buf) - 1]);
+    buf[strlen(buf) - 1] = '\0';
+    strcat(direct,buf);
+    strcat(direct,cl);
+    strcat(buf,"-1");
+    strcat(direct,buf);
+    printf("%s\n",direct);
+    system(direct);
+    strcpy(direct,"mv \0");
   }
   return 0;
 }

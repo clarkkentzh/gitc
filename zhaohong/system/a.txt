@@ -1,2 +1,2 @@
-c.c
-c1.c
+hello
+hello1
