@@ -9,6 +9,9 @@
 int do_insert(sqlite3 *db);
 int do_delete(sqlite3 *db);
 int do_update(sqlite3 *db);
+int do_show(sqlite3 *db);
+int do_show_1(sqlite3 *db);
+int call_back(void *param, int column, char **value, char **name);
 
 int main(int argc,char *argv[]){
   sqlite3 *db;
@@ -46,6 +49,10 @@ int main(int argc,char *argv[]){
       case 2:
       do_delete(db);
       break;
+      case 3:
+      do_show(db);
+      //do_show_1(db):
+      break;
       case 4:
       do_update(db);
       break;
@@ -57,6 +64,7 @@ RET:
   sqlite3_close(db);
   return 0;
 }
+
 int do_insert(sqlite3 *db){
   int id;
   char name[M] = {0};
@@ -82,9 +90,9 @@ int do_insert(sqlite3 *db){
   printf("\e[34minsert ok!\e[0m\n");
   return 0;
 }
+
 int do_delete(sqlite3 *db){
   int id;
-  int score;
   char sql[N] = {0};
   char *errmsg;
 
@@ -100,6 +108,59 @@ int do_delete(sqlite3 *db){
   printf("\e[34mdelete ok!\e[0m\n");
   return 0;
 }
+
+int do_show(sqlite3 *db){
+  char *errmsg;
+  int a = 0;
+  if(sqlite3_exec(db,"select * from stu",call_back,&a,&errmsg) != SQLITE_OK){
+    printf("%s\n",errmsg);
+    return -1;
+  }
+  printf("\e[32mshow ok!\e[0m\n");
+  return 0;
+}
+
+int call_back(void *param, int column, char **value, char **name){
+  int a;
+  int i = 0;
+  a = (*(int *)param)++;
+  if(a == 0){
+    for(i = 0;i < column;i++){
+      printf("%-15s",*(name++));
+    }
+    putchar(10);
+  }
+  for(i = 0;i < column;i++){
+    printf("%-15s",*(value++));
+  }
+  putchar(10);
+  return 0;
+}
+
+int do_show_1(sqlite3 *db){
+  char *errmsg;
+  char **result,**temp;
+  int nrow,ncolumn;
+  int i,j;
+  if(sqlite3_get_table(db,"select * from stu",&result,&nrow,&ncolumn,&errmsg) != SQLITE_OK){
+    printf("%s\n",errmsg);
+    return -1;
+  }
+  else{
+    temp = result;
+    for(i = 0;i < ncolumn;i++){
+      for(j = 0;j < ncolumn;j++){
+        printf("%-15s",*(temp++));
+      //  putchar(10);
+      }
+      putchar(10);
+    }
+  }
+  sqlite3_free_table(result);
+  printf("\e[32mshow ok!\e[0m\n");
+  return 0;
+}
+
 int do_update(sqlite3 *db){
   int id;
   int score;
