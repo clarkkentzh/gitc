@@ -116,7 +116,7 @@ int do_show(sqlite3 *db){
     printf("%s\n",errmsg);
     return -1;
   }
-  printf("\e[32mshow ok!\e[0m\n");
+  printf("\e[34mshow ok!\e[0m\n");
   return 0;
 }
 
@@ -157,7 +157,7 @@ int do_show_1(sqlite3 *db){
     }
   }
   sqlite3_free_table(result);
-  printf("\e[32mshow ok!\e[0m\n");
+  printf("\e[34mshow ok!\e[0m\n");
   return 0;
 }
 

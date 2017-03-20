@@ -17,10 +17,10 @@ int main(int argc,const char * argv[]){
   printf("</style></head>\n");
   printf("<body>\n");
   printf("<body bgcolor = green>");
-  printf("<h1>全栈H5课程市场咨询培训</h1>\n");
-  printf("<h2>1.HTML5导论</h2>\n");
+  printf("<h1 align = center>全栈H5课程市场咨询培训</h1>\n");
+  printf("<h2 align = center>1.HTML5导论</h2>\n");
   printf("<h3>什么是HTML5【1】</h3>");
-  printf("<p>答：广义论及HTML5时，实际指的是包括HTML、CSS和JavaScript在内的一套技术组合。HEML超文本标记语言（英语：HypertextMarkupLanguage，简称：HEML）是一种用于创建网页的标准标记语言。</p>\n<p>CSS是层叠样式表（英语：CascadingStyleSheets，简写CSS），又称串样式列表、级联样式表、串接样式表、层叠样式表，一种用来为结构化文档（如HTML文档或XML应用）添加样式（字体、间距和颜色等）的计算机语言，由W3C定义和维护。</p>\n<p>JavaScript一种解释型脚本语言，是一种动态类型、基于原型的语言，内置支持类。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言，最早是在HTML网页上使用，用来给HTML网页增加动态功能。然而现在JavaScript也可被用于网络服务器，如Node.js。</p>\n");
+  printf("<p>答：广义论及HTML5时，实际指的是包括HTML、CSS和JavaScript在内的一套技术组合。HTML超文本标记语言（英语：HypertextMarkupLanguage，简称：HTML）是一种用于创建网页的标准标记语言。</p>\n<p>CSS是层叠样式表（英语：CascadingStyleSheets，简写CSS），又称串样式列表、级联样式表、串接样式表、层叠样式表，一种用来为结构化文档（如HTML文档或XML应用）添加样式（字体、间距和颜色等）的计算机语言，由W3C定义和维护。</p>\n<p>JavaScript一种解释型脚本语言，是一种动态类型、基于原型的语言，内置支持类。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言，最早是在HTML网页上使用，用来给HTML网页增加动态功能。然而现在JavaScript也可被用于网络服务器，如Node.js。</p>\n");
   printf("<h3>发展史【3】</h3>\n");
   printf("<p><ul><li>HTML1.0————在1993年6月作为互联网工程工作小组（IETF）工作草案发布（并非标准）；</li><li>HTML2.0————1995年11月作为RFC1866发布，在RFC2854于2000年6月发布之后被宣布已经过时</li><li>HTML3.2————1997年1月14日，W3C推荐标准</li><li>HTML4.0————1997年12月18日，W3C推荐标准</li><li>HTML4.01（微小改进）————1999年12月24日，W3C推荐标准</li><li>HTML5————2014年10月28日，W3C推荐标准</li></ul></p>\n");
   printf("<p>万维网联盟（World Wide Web Consortium,W3C）又称W3C理事会。1994年10月在麻省理工学院计算机科学实验室成立。创建者是互联网的发明者蒂姆·伯纳斯·李。【4】</p>");
