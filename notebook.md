@@ -100,7 +100,7 @@ $ git clone https://github.com/username
 ```
 4. 将本地仓库与github仓库进行同步，将本地提交推送到服务器上。
 ```sh
-$ git push prigin master
+$ git push origin master
 $ input username
 $ input password
 ```
