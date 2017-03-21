@@ -128,5 +128,33 @@ int main(void)
 ```
 
 * 完成上面两步， 请打开浏览器， 在浏览器的地址栏中输入： http://localhost
+## cgic基本使用
+* [cgic官网链接] (https://boutell.com/cgic/)
+### 下载tar文件
+复制图片中第一个链接地址
+![压缩包](http://p1.bqimg.com/1949/7d54f3cd7037b4b2.png)
+在终端用wget -c 加链接下载链接的压缩包
+最后用tar xvf指令解压压缩包
+### 获取表单数据
+```c
+cgiFormResultType   cgiFormString(char *name, char *result, int max);
+参数：  name, 指定要获取的表单项的名字
+       result,将获得的数据存储到result中
+       max， 指定最多读取的字符个数
+
+比如： cgiFormString("name", result,  16);可以获得最多16个字符并且保存于result中
+```
+### 补充函数fprintf
+```c
+int fprintf(FILE *stream, const char *format, ...);
+功能： 将格式化的语句输出到指定的流
+fprintf(stdin, "helloworld\n")  等价于 printf("helloworld\n);
+```
+### 补充函数atoi
+```c
+int atoi(const char *nptr);
+功能：将一个字符串转换成对应的数字，比如：“1234” ==》 1234
+```
+
 
 
