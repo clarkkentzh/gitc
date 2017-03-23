@@ -34,25 +34,20 @@ int call_back(void *param, int column, char **value, char **name);
 sqlite3 * db;
 
 int cgiMain() {
-#ifdef DEBUG
 
-	LoadEnvironment();
-#endif
-  if (cgiFormSubmitClicked("loadenvironment") == cgiFormSuccess) {
-    LoadEnvironment();
-  }
-  CookieSet();
   cgiHeaderContentType("text/html");
   fprintf(cgiOut, "<HTML><meta charset=\"UTF-8\"><HEAD>\n");
 	fprintf(cgiOut, "<TITLE>cgic test</TITLE></HEAD>\n");
 	fprintf(cgiOut, "<BODY><H1>cgic 测试</H1>\n");
 	fprintf(cgiOut, "<body background=\"http://i1.piimg.com/1949/186dab395823b0cc.jpg\">");
+
   if ((cgiFormSubmitClicked("testcgic") == cgiFormSuccess) ||
 		cgiFormSubmitClicked("saveenvironment") == cgiFormSuccess)
 	{
 		HandleSubmit();
 		fprintf(cgiOut, "<hr>\n");
-	}
+  }
+
   ShowForm();
   fprintf(cgiOut, "</BODY></HTML>\n");
 	return 0;
@@ -79,9 +74,6 @@ int HandleSubmit(){
 	}
 	Name();
 	show();
-	if (cgiFormSubmitClicked("saveenvironment") == cgiFormSuccess) {
-		SaveEnvironment();
-  }
 	sqlite3_close(db);
 }
 
@@ -170,7 +162,7 @@ int do_update(int *id,int *score){
 }
 
 void show() {
-	if (cgiFormCheckboxSingle("show") == cgiFormSuccess) {
+	if (cgiFormCheckboxSingle("showdata") == cgiFormSuccess){
 		char *errmsg;
 		char **result,**temp;
 		int nrow,ncolumn;
@@ -178,7 +170,7 @@ void show() {
 		if(sqlite3_get_table(db,"select * from stu",&result,&nrow,&ncolumn,&errmsg) != SQLITE_OK){
 			printf("%s\n",errmsg);
 		}
-		else{
+	  else{
 			temp = result;
 			fprintf(cgiOut, "数据库表格数据：");
 			printf("<table border=\"15\" bgcolor=\"red\">");
@@ -194,6 +186,7 @@ void show() {
 		sqlite3_free_table(result);
   }
 }
+
 
 void Address() {
 	char address[241];
@@ -261,7 +254,7 @@ void ShowForm()
   fprintf(cgiOut, "Update ID<input type=\"text\" name=\"updateid\">\n");
   fprintf(cgiOut, "Update score<input type=\"text\" name=\"updates\">\n");
   fprintf(cgiOut, "<br><br>\n");
-	fprintf(cgiOut, "<input type=\"checkbox\" name=\"show\" value=\"Show\" checked>\n");
+	fprintf(cgiOut, "<input type=\"checkbox\" name=\"showdata\" value=\"Showdata\" checked>\n");
 	fprintf(cgiOut, "<br>");
   fprintf(cgiOut, "a=:<input type=\"text\" name=\"int\">\n");
   fprintf(cgiOut, "<br>\n");
@@ -281,58 +274,4 @@ void ShowForm()
   fprintf(cgiOut, "<input type=\"submit\" name=\"saveenvironment\" value=\"Save Environment\">\n");
   fprintf(cgiOut, "<br>");
   fprintf(cgiOut, "</form>\n");
-}
-void CookieSet()
-{
-	char cname[1024];
-	char cvalue[1024];
-	/* Must set cookies BEFORE calling cgiHeaderContentType */
-	cgiFormString("cname", cname, sizeof(cname));
-	cgiFormString("cvalue", cvalue, sizeof(cvalue));
-	if (strlen(cname)) {
-		/* Cookie lives for one day (or until browser chooses
-			to get rid of it, which may be immediately),
-			and applies only to this script on this site. */
-		cgiHeaderCookieSetString(cname, cvalue,
-			86400, cgiScriptName, SERVER_NAME);
-	}
-}
-
-void LoadEnvironment()
-{
-	if (cgiReadEnvironment(SAVED_ENVIRONMENT) !=
-		cgiEnvironmentSuccess)
-	{
-		cgiHeaderContentType("text/html");
-		fprintf(cgiOut, "<head>Error</head>\n");
-		fprintf(cgiOut, "<body><h1>Error</h1>\n");
-		fprintf(cgiOut, "cgiReadEnvironment failed. Most "
-			"likely you have not saved an environment "
-			"yet.\n");
-		exit(0);
-	}
-	/* OK, return now and show the results of the saved environment */
-}
-
-void SaveEnvironment()
-{
-	if (cgiWriteEnvironment(SAVED_ENVIRONMENT) !=
-		cgiEnvironmentSuccess)
-	{
-		fprintf(cgiOut, "<p>cgiWriteEnvironment failed. Most "
-			"likely %s is not a valid path or is not "
-			"writable by the user that the CGI program "
-			"is running as.<p>\n", SAVED_ENVIRONMENT);
-	}
-  else {
-		fprintf(cgiOut,/* "<p>Environment saved. Click this button "
-			"to restore it, playing back exactly the same "
-			"scenario: "*/
-			"<form method=POST action=\"");
-		cgiValueEscape(cgiScriptName);
-		fprintf(cgiOut, "\""
-			"<input type=\"submit\""
-			"value=\"Load Environment\" "
-			"name=\"loadenvironment\"></form></p>\n");
-	}
 }
