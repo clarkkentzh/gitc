@@ -34,7 +34,7 @@ int cgiMain() {
   fprintf(cgiOut, "<HTML><meta charset=\"UTF-8\"><HEAD>\n");
   fprintf(cgiOut, "<style>.center{margin:auto;width:35%%;}</style>\n");//设置页面居中和div标签。
 	fprintf(cgiOut, "<TITLE>cgic test</TITLE></HEAD>\n");
-	fprintf(cgiOut, "<BODY text-align:center><h1 style=\"color:gainsboro;text-align:center;\">数据库管理系统</h1>\n");//设置字体颜色居中。
+	fprintf(cgiOut, "<BODY text-align:center><h1 style=\"color:gainsboro;text-align:center;\">学生管理系统</h1>\n");//设置字体颜色居中。
 	fprintf(cgiOut, "<body background=\"http://i2.buimg.com/1949/6dd97566eb0f50eb.jpg\">");//设置背景图片
   fprintf(cgiOut, "<body oncontextmenu=\"return false\" onselectstart=\"return false\">\n");//设置页面不能被复制。
 
@@ -104,13 +104,13 @@ void Name(){
 
   if((idt != 0) && (*name != 0)) {
 
-    fprintf(cgiOut, "学号： ");
+    fprintf(cgiOut, "插入学号： ");
 	  cgiHtmlEscape(id);
 	  fprintf(cgiOut, "<br>\n");
-	  fprintf(cgiOut, "姓名： ");
+	  fprintf(cgiOut, "插入姓名： ");
 	  cgiHtmlEscape(name);
 	  fprintf(cgiOut, "<br>\n");
-	  fprintf(cgiOut, "成绩： ");
+	  fprintf(cgiOut, "插入成绩： ");
 	  cgiHtmlEscape(score);
 	  fprintf(cgiOut, "<br>\n");
 
@@ -128,7 +128,7 @@ void Name(){
     }
   }
   if(deletet != 0){
-	  fprintf(cgiOut, "删除学号： ");
+	  fprintf(cgiOut, "已删除学号： ");
 	  cgiHtmlEscape(delete);
 	  fprintf(cgiOut, "<br>\n");
     a = 0;
@@ -142,7 +142,7 @@ void Name(){
 	  fprintf(cgiOut, "学号: ");
 	  cgiHtmlEscape(updateid);
 	  fprintf(cgiOut, "<br>\n");
-	  fprintf(cgiOut, "修改成绩： ");
+	  fprintf(cgiOut, "已修改成绩： ");
 	  cgiHtmlEscape(updates);
 	  fprintf(cgiOut, "<br>\n");
     a = 0;
@@ -224,7 +224,7 @@ void show() {
 	  else{
 			temp = result;
       fprintf(cgiOut, "<div class=\"center\">\n");
-			fprintf(cgiOut, "<h2 style=\"color:lime\">数据库表格数据</h2>");
+			fprintf(cgiOut, "<h2 style=\"color:lime\">学生成绩表格</h2>");
 			printf("<table border=\"1\" bgcolor=\"red\" width=\"600\" height=\"400\">");       //设置表格大小颜色
 			for(i = 0;i < nrow + 1;i++){
 				printf("<tr>");
@@ -256,13 +256,13 @@ void ShowForm()
   fprintf(cgiOut, "<ol>\n");
   fprintf(cgiOut, "<font color=\"orangered\"><h2><li>插入数据</li></h2></font>");
   fprintf(cgiOut, "<font color=\"lime\">学号 :</font><input type=\"text\" name=\"id\" size=\"3\">\n");
-  if(a == 1){fprintf(cgiOut, "<font style=\"color:red\">ID不能为0！</font>");}
+  if(a == 1){fprintf(cgiOut, "<font style=\"color:red\">学号不能为0！</font>");}
   fprintf(cgiOut, "<br><br>\n");
   fprintf(cgiOut, "<font color=\"lime\">姓名 :</font><input type=\"text\" name=\"name\" size=\"3\">\n");
-  if(b == 1){fprintf(cgiOut, "<font color=\"red\">Name不能为空！</font>");}
+  if(b == 1){fprintf(cgiOut, "<font color=\"red\">姓名不能为空！</font>");}
   fprintf(cgiOut, "<br><br>\n");
   fprintf(cgiOut, "<font color=\"lime\">成绩 :</font><input type=\"text\" name=\"score\" size=\"3\">\n");
-  if(c == 1){fprintf(cgiOut, "<font color=\"yellow\">Score为空，默认为0！</font>");}
+  if(c == 1){fprintf(cgiOut, "<font color=\"yellow\">成绩为空，默认为0！</font>");}
   fprintf(cgiOut, "<br><br>\n");
   fprintf(cgiOut, "<font color=\"orangered\"><h2><li>删除数据</li></h2></font>\n");
   fprintf(cgiOut, "<font color=\"lime\">学号 :</font><input type=\"text\" name=\"delete\" size=\"3\">\n");
@@ -270,15 +270,13 @@ void ShowForm()
   fprintf(cgiOut, "<br>\n");
   fprintf(cgiOut, "<font color=\"orangered\"><h2><li>修改数据</li></h2></font>");
   fprintf(cgiOut, "<font color=\"lime\">学号 :</font><input type=\"text\" name=\"updateid\" size=\"3\">\n");
-  if(e == 1){fprintf(cgiOut, "<font color=\"red\">ID不能为0！</font>");}
+  if(e == 1){fprintf(cgiOut, "<font color=\"red\">学号不能为0！</font>");}
   fprintf(cgiOut, "<br><br>\n");
   fprintf(cgiOut, "<font color=\"lime\">成绩 :</font><input type=\"text\" name=\"updates\" size=\"3\">\n");
-  if(f == 1){fprintf(cgiOut, "<font color=\"yellow\">Score为空，默认为0！</font>");}
-  fprintf(cgiOut, "<br><br>\n");
+  if(f == 1){fprintf(cgiOut, "<font color=\"yellow\">成绩为空，默认为0！</font>");}
   fprintf(cgiOut, "</ol>\n");
 	//fprintf(cgiOut, "<input type=\"checkbox\" name=\"showdata\" value=\"Showdata\" checked>\n");
 	fprintf(cgiOut, "<br>");
-
   fprintf(cgiOut, "<input type=\"submit\" name=\"saveenvironment\" value=\"提交数据\" style=\"background:DarkOliveGreen;width:150px\">\n");
   fprintf(cgiOut, "<br>");
   fprintf(cgiOut, "<input type=\"submit\" name=\"showdata\" value=\"显示数据\" style=\"background:DarkOliveGreen;width:150px\">\n");
