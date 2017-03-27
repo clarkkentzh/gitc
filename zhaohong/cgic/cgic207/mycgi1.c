@@ -33,84 +33,84 @@ int cgiMain() {
   cgiHeaderContentType("text/html");
   fprintf(cgiOut, "<HTML><meta charset=\"UTF-8\"><HEAD>\n");
   fprintf(cgiOut, "<style>.center{margin:auto;width:35%%;}</style>\n");//设置页面居中和div标签。
-	fprintf(cgiOut, "<TITLE>cgic test</TITLE></HEAD>\n");
-	fprintf(cgiOut, "<BODY text-align:center><h1 style=\"color:gainsboro;text-align:center;\">学生管理系统</h1>\n");//设置字体颜色居中。
-	fprintf(cgiOut, "<body background=\"http://i2.buimg.com/1949/6dd97566eb0f50eb.jpg\">");//设置背景图片
+  fprintf(cgiOut, "<TITLE>cgic test</TITLE></HEAD>\n");
+  fprintf(cgiOut, "<BODY text-align:center><h1 style=\"color:gainsboro;text-align:center;\">学生管理系统</h1>\n");//设置字体颜色居中。
+  fprintf(cgiOut, "<body background=\"http://i2.buimg.com/1949/6dd97566eb0f50eb.jpg\">");//设置背景图片
   fprintf(cgiOut, "<body oncontextmenu=\"return false\" onselectstart=\"return false\">\n");//设置页面不能被复制。
 
-	if(cgiFormSubmitClicked("saveenvironment") == cgiFormSuccess){
+  if(cgiFormSubmitClicked("saveenvironment") == cgiFormSuccess){
 
     fprintf(cgiOut, "<font color=\"gainsboro\">");
-		HandleSubmit();
-		fprintf(cgiOut, "</font><hr>\n");
+    HandleSubmit();
+    fprintf(cgiOut, "</font><hr>\n");
   }
   if(cgiFormSubmitClicked("showdata") == cgiFormSuccess){
     show();
   }
   if(cgiFormSubmitClicked("showdata") != cgiFormSuccess){
 
-  ShowForm();
+    ShowForm();
   }
   fprintf(cgiOut, "</BODY></HTML>\n");
-	return 0;
+  return 0;
 }
 
 int HandleSubmit(){
   int ret;
-	char * errmsg;
-	if(sqlite3_open("./db/my.db",&db) != SQLITE_OK){
-		printf("%s\n",sqlite3_errmsg(db));
-		return -1;
-	}
+  char * errmsg;
+  if(sqlite3_open("./db/my.db",&db) != SQLITE_OK){
+    printf("%s\n",sqlite3_errmsg(db));
+    return -1;
+  }
 
-	if((ret = sqlite3_exec(db,"create table stu(id integer,name vchar(32) not null,\
-	score integer not null)",NULL,NULL,&errmsg)) != SQLITE_OK){
+  if((ret = sqlite3_exec(db,"create table stu(id integer,name vchar(32) not null,\
+  score integer not null)",NULL,NULL,&errmsg)) != SQLITE_OK){
 
-		if(ret != 1){
-			printf("%s\n",errmsg);
-			sqlite3_close(db);
-			return -1;
-		}
-	}
-	Name();
-	sqlite3_close(db);
+    if(ret != 1){
+      printf("%s\n",errmsg);
+      sqlite3_close(db);
+      return -1;
+    }
+  }
+  Name();
+  sqlite3_close(db);
 }
 
 void Name(){
   char id[81];
-	char name[81];
-	char score[81];
-	char delete[81];
-	char updateid[81];
-	char updates[81];
-	int idt,scoret,deletet;
-	int uid,uscore;
+  char name[81];
+  char score[81];
+  char delete[81];
+  char updateid[81];
+  char updates[81];
+  int idt,scoret,deletet;
+  int uid,uscore;
   char names;
 
 
-	cgiFormStringNoNewlines("id", id, 81);
-	cgiFormStringNoNewlines("name", name, 81);
-	cgiFormStringNoNewlines("score", score, 81);
-	cgiFormStringNoNewlines("delete", delete, 81);
-	cgiFormStringNoNewlines("updateid", updateid, 81);
-	cgiFormStringNoNewlines("updates", updates, 81);
+  cgiFormStringNoNewlines("id", id, 81);
+  cgiFormStringNoNewlines("name", name, 81);
+  cgiFormStringNoNewlines("score", score, 81);
+  cgiFormStringNoNewlines("delete", delete, 81);
+  cgiFormStringNoNewlines("updateid", updateid, 81);
+  cgiFormStringNoNewlines("updates", updates, 81);
 
-	idt = atoi(id);
-	scoret = atoi(score);
-	deletet = atoi(delete);
-	uid = atoi(updateid);
-	uscore = atoi(updates);
+  idt = atoi(id);
+  scoret = atoi(score);
+  deletet = atoi(delete);
+  uid = atoi(updateid);
+  uscore = atoi(updates);
 
 
   if((idt != 0) && (*name != 0)) {
 
     fprintf(cgiOut, "插入学号： ");
-	  cgiHtmlEscape(id);
-	  fprintf(cgiOut, "<br>\n");
-	  fprintf(cgiOut, "插入姓名： ");
-	  cgiHtmlEscape(name);
-	  fprintf(cgiOut, "<br>\n");
-	  fprintf(cgiOut, "插入成绩： ");
+    cgiHtmlEscape(id);
+    fprintf(cgiOut, "<br>\n");
+    fprintf(cgiOut, "插入姓名： ");
+    cgiHtmlEscape(name);
+    fprintf(cgiOut, "<br>\n");
+    fprintf(cgiOut, "插入成绩： ");
 	  cgiHtmlEscape(score);
 	  fprintf(cgiOut, "<br>\n");
 

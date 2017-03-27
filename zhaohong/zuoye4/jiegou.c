@@ -19,6 +19,6 @@ int main(void){
   printf("%s\n",book1.title);
   printf("%d  ",book2.book_id);
   printf("%s\n",book2.title);
-
+  printf("%ld\n",sizeof(book1));
   return 0;
 }

@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(void){
-  int compare(const void * a,const void * b){
+
+int compare(const void * a,const void * b){
 
     return (*(int *)a) - (*(int *)b);
   }
+
+int main(void){
 
   int i;
   int a[5] = {2,10,1,5,3};
