@@ -7,6 +7,17 @@ typedef struct node{
   struct node * next;
 }linknode, *linklist;
 
+/*linklist link_create(){
+  linknode * p;
+  p = malloc(sizeof(struct node));
+  if(p == NULL){
+    printf("error!");
+    return 0;
+  }
+  p->next = NULL;
+  return p;
+}*/
+
 int main(){
   struct node * head = NULL;
   head = malloc(sizeof(struct node));
