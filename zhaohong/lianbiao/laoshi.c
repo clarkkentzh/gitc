@@ -59,17 +59,6 @@ struct Books * search(struct Books * p,int m){
 }
 
 void show(struct Books * p){
-  int i;
-  int * z;
-  for(i = 0;i < 8;i++){
-    for(p;p->next != NULL;p = p->next){
-      if(p->book_id > (p->next)->book_id){
-        z = p;
-        p = p->next;
-        p->next = z;
-      }
-    }
-  }
   while(p != NULL){
     printf("id = %d,ip = %p\n",p->book_id,p);
     p = p->next;
