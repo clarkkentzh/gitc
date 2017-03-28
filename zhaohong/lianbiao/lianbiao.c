@@ -27,7 +27,7 @@ int link_headin(linklist p,datatype value){
   }
   q->data = value;
   q->next = NULL;
-  q->next = p->next;
+  q->next = p->next;       //赋值
   p->next = q;
   return 1;                  //插入结点
 }
@@ -80,8 +80,8 @@ int main(void){
     }
   }
   link_show(p);
-  delete_list(p,1);
+  delete_list(p,4);
   link_show(p);
-  search_list(p,4);
+  search_list(p,2);
   return 0;
 }

@@ -6,7 +6,7 @@ struct Books{
   struct Books * next;
 };
 
-int insert(struct Books * head,int val){
+/*int insert(struct Books * head,int val){
   struct Books * p;
   p = malloc(sizeof(struct Books));
   if(p == NULL){
@@ -20,20 +20,35 @@ int insert(struct Books * head,int val){
     head = head->next;         //循环找到最后一个结点
   }
   head->next = p;              //这是最后一个结点，然后指向p
+}*/
+
+int insert_1(struct Books * p,int val,int n){
+  struct Books * q;
+  q = malloc(sizeof(struct Books));
+  if(q == NULL){
+    printf("error");
+    return -1;
+  }                                //不能在头结点插入结点
+  q->book_id = val;
+  q->next = NULL;
+  while((p->book_id) != n){
+    p = p->next;
+  }
+  q->next = p->next;
+  p->next = q;
 }
 
 struct Books * delete(struct Books * p,int n){
   struct Books * q = NULL;
-  struct Books * k = NULL;
-  k = p;                                    //头结点不能删除
-  while(NULL != k && k->book_id != n){
-      q = k;
-      k = k->next;
+
+  while(NULL != p && p->book_id != n){
+      q = p;
+      p = p->next;
   }
-  if(NULL != k){
-    q->next = k->next;
-    free(k);
-    }
+  if(NULL != p){
+    q->next = p->next;
+    free(p);
+  }
   return p;
 }
 struct Books * search(struct Books * p,int m){
@@ -44,6 +59,17 @@ struct Books * search(struct Books * p,int m){
 }
 
 void show(struct Books * p){
+  int i;
+  int * z;
+  for(i = 0;i < 8;i++){
+    for(p;p->next != NULL;p = p->next){
+      if(p->book_id > (p->next)->book_id){
+        z = p;
+        p = p->next;
+        p->next = z;
+      }
+    }
+  }
   while(p != NULL){
     printf("id = %d,ip = %p\n",p->book_id,p);
     p = p->next;
@@ -51,24 +77,25 @@ void show(struct Books * p){
 }
 
 int main(void){
-  struct Books * p;
+  struct Books * p = NULL;
   struct Books head;
 
   p = &head;
   head.book_id = 100;
   head.next = NULL;
-  insert(p,101);
-  insert(p,102);     //头结点删除这部分都会出现问题
-  insert(p,103);
-  insert(p,104);
-  insert(p,105);
-  insert(p,106);
+  insert_1(&head,101,100);
+  insert_1(&head,102,101);     //头结点删除这部分都会出现问题
+  insert_1(&head,103,102);
+  insert_1(&head,104,103);
+  insert_1(&head,105,104);
+  insert_1(&head,106,105);
+  insert_1(&head,107,106);
 
-  show(p);
-  delete(p,102);
+  show(&head);
+  delete(&head,102);
   printf("=====================\n");
-  show(p);
+  show(&head);
   printf("*********************\n");
-  search(p,105);
+  search(&head,105);
   return 0;
 }
