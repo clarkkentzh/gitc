@@ -25,27 +25,27 @@ int insert(struct Books * head,int val){
 struct Books * delete(struct Books * p,int n){
   struct Books * q = NULL;
   struct Books * k = NULL;
-  k = p;
-  if(p->book_id == n){
-    p = k->next;
-    free(k);
-  }
-  else{
-    while(NULL != k && k->book_id != n){
+  k = p;                                    //头结点不能删除
+  while(NULL != k && k->book_id != n){
       q = k;
       k = k->next;
-    }
-    if(NULL != k){
+  }
+  if(NULL != k){
     q->next = k->next;
     free(k);
     }
-  }
   return p;
+}
+struct Books * search(struct Books * p,int m){
+  while(p != NULL && p->book_id != m){
+    p = p->next;
+  }
+  printf("%d   %p\n",p->book_id,p);
 }
 
 void show(struct Books * p){
   while(p != NULL){
-    printf("head.book_id = %d\n",p->book_id);
+    printf("id = %d,ip = %p\n",p->book_id,p);
     p = p->next;
   }
 }
@@ -57,16 +57,18 @@ int main(void){
   p = &head;
   head.book_id = 100;
   head.next = NULL;
-  insert(&head,101);
-  insert(&head,102);
-  insert(&head,103);
-  insert(&head,104);
-  insert(&head,105);
-  insert(&head,106);
+  insert(p,101);
+  insert(p,102);     //头结点删除这部分都会出现问题
+  insert(p,103);
+  insert(p,104);
+  insert(p,105);
+  insert(p,106);
 
-  show(&head);
-  delete(&head,100);
+  show(p);
+  delete(p,102);
   printf("=====================\n");
-  show(&head);
+  show(p);
+  printf("*********************\n");
+  search(p,105);
   return 0;
 }

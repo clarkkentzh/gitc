@@ -79,7 +79,8 @@ int main(void){
       return 0;
     }
   }
-//  delete_list(p,3);
+  link_show(p);
+  delete_list(p,1);
   link_show(p);
   search_list(p,4);
   return 0;
