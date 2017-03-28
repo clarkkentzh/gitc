@@ -217,7 +217,7 @@ void show() {
   			sqlite3_close(db);
 
   		}
-  	}                        //创建表
+  	}                       //创建表
 		if(sqlite3_get_table(db,"select * from stu order by id",&result,&nrow,&ncolumn,&errmsg) != SQLITE_OK){
 			printf("%s\n",errmsg);
 		}
