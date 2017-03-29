@@ -125,7 +125,7 @@ int main(void){
 
   link_show(p);
   printf("*****************\n");
-/*
+
   delete_list(p,3);
   link_show(p);
   printf("*****************\n");
@@ -133,7 +133,7 @@ int main(void){
   printf("*****************\n");
   link_show1(p);
   printf("*****************\n");
-*/
+
   insert(p,5,6);
   link_show(p);
   return 0;
