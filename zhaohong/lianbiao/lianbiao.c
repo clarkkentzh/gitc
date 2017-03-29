@@ -5,83 +5,136 @@ typedef int datatype;//单纯的一个定义类型，datatype就相当于int
 typedef struct node{
   datatype data;
   struct node * next;
+  struct node * prev;
 }linknode,*linklist;
 
-linklist link_create(){
+linklist link_create(int val){
   linklist p;
   p = malloc(sizeof(linknode));
   if(p == NULL){
     printf("error!");
     return 0;
   }
-  p->next = NULL;
+  p->data = val;
+  p->next = p;
+  p->prev = p;
   return p;                      //创建链表
 }
 
-int link_headin(linklist p,datatype value){
+int link_headin(linklist p,datatype val){
   linklist q;
   q = malloc(sizeof(linknode));
   if(q == NULL){
     printf("error!");
     return 0;
   }
-  q->data = value;
-  q->next = NULL;
-  q->next = p->next;       //赋值
+  q->data = val;
+  p->next->prev = q;
+  q->next = p->next;
+  q->prev = p;
   p->next = q;
-  return 1;                  //插入结点
+  return 1;                  //头插法插入结点
+}
+
+int insert(linklist p,datatype val,int n){
+  linklist q;
+  linklist k;
+  k = malloc(sizeof(linknode));
+  if(k == NULL){
+    printf("error");
+    return 0;
+  }
+  q = p->next;
+  while(q != p && q->data != n){
+    q = q->next;
+  }
+  if(q->data != n){
+    printf("未搜索到位置%d！",n);
+  }
+  else{
+    k->data = val;
+    q->next->prev = k;
+    k->next = q->next;            //判断是否在头结点前后，将头结点位置赋值
+    q->next = k;
+    k->prev = q;
+  }
 }
 
 int search_list(linklist p,int n){
-  while(p != NULL && p->data != n){
-    p = p->next;
+  linklist q = p->next;
+  while(q != p && q->data != n){
+    q = q->next;
   }
-  printf("%p\n",p);         //搜索链表，成功则返回含有n的结点的指针
+  if(q == p){
+    printf("未搜索到数据！\n");
+  }
+  else{
+  printf("搜索data = %d,ip = %p\n",p->data,p);
+  }                         //搜索链表，成功则返回含有n的结点的指针
 }
 
 linklist delete_list(linklist p,int n){
-  linklist q,k;
-  for(k = p,q = NULL;k != NULL && k->data != n;q = k,k = k->next){
+  linklist q,k = NULL;
+  q = p->next;
+  while(q != p && q->data != n){
+    k = q;
+    q = q->next;
   }
-  if(k == NULL){
-    return p;
+  if(q == p){
+    return p;           //没有找到要删除的数
   }
-  else if(q == NULL){
-    p = p->next;
+  else if(k == NULL){
+    q->next->prev = p;
+    p->next = q->next;
   }
   else{
-    q->next = k->next;
+    q->next->prev = q->prev;
+    q->prev->next = q->next;
   }
-  free(k);
-  return p;
-}                               //删除结点
+  printf("删除data = %d\n",q->data);
+}                              //删除结点
 
 void link_show(linklist p){
   linklist q;
   q = p->next;
-  while(q != NULL){
-    printf("%d  %p\n",q->data,q) ;
+  while(q != p){
+    printf("%d  self ip = %p  next ip = %p  prev ip = %p\n",q->data,q,q->next,q->prev);
     q = q->next;
   }
-  putchar(10);              //显示
 }
+void link_show1(linklist p){
+  printf("反向显示！\n");
+  linklist q;
+  q = p->prev;
+  while(q != p){
+    printf("%d  self ip = %p  next ip = %p  prev ip = %p\n",q->data,q,q->prev,q->next);
+    q = q->prev;
+  }
+}
+
 
 int main(void){
   linklist p;
-
-  if((p = link_create()) == NULL){
-    printf("error!");
-    return 0;
-  }
-  int i,a[5] = {6,4,3,2,1};
+  p = link_create(0);
+  int a[5] = {1,2,3,4,6};
+  int i;
   for(i = 0;i < 5;i++){
-    if(link_headin(p,a[i]) == 0){
-      return 0;
-    }
+    link_headin(p,a[i]);
   }
+  printf("%p\n",p);
+
   link_show(p);
-  delete_list(p,4);
+  printf("*****************\n");
+/*
+  delete_list(p,3);
   link_show(p);
-  search_list(p,2);
+  printf("*****************\n");
+  search_list(p,7);
+  printf("*****************\n");
+  link_show1(p);
+  printf("*****************\n");
+*/
+  insert(p,5,6);
+  link_show(p);
   return 0;
 }

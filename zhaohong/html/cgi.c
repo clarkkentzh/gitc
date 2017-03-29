@@ -17,8 +17,9 @@ int main(void)
   printf("</style></head>");
   printf("<body>\n");
   data = getenv("QUERY_STRING");
-  if(data == NULL)
+  if(data == NULL){
     printf("error!!!\n");
+  }
   //printf("%s\n", data);
   sscanf(data, "a=%ld&fuhao=%d&b=%ld", &i, &k, &j);
   printf("<br>");
