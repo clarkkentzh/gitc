@@ -23,7 +23,7 @@ void InitStack(pstack p){               //创建一个空栈
 void TraverseStack(pstack p){           //遍历
   linklist q = p->top;
   while(q != p->bottom){
-    printf("%d   %p\n",q->id,q);
+    printf("%d\n",q->id);
     q = q->next;
   }
 }
@@ -59,22 +59,4 @@ int Clear(pstack p){
     p->top = p->top->next;
     free(q);
   }
-}
-
-int main(void){
-  stack s;
-  int a[5] = {6,4,3,2,1};
-  int i;
-  InitStack(&s);
-  for(i = 0;i < 5;i++){
-    Push(&s,a[i]);
-  }
-  TraverseStack(&s);
-  printf("**************\n");
-  Pop(&s);
-  TraverseStack(&s);
-  printf("**************\n");
-  Clear(&s);
-  TraverseStack(&s);
-  return 0;
 }
