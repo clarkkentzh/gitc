@@ -26,7 +26,7 @@ int main(int argc,const char * argv[])
   mystrcat(a,k);
   mystrcat(c,k);
   mystrcat(d,k);
-}
+  }
   printf("</body>\n");
   printf("</html>\n");
   fflush(stdout);
