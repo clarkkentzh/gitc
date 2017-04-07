@@ -33,7 +33,7 @@ int cgiMain() {
   cgiHeaderContentType("text/html");
   fprintf(cgiOut, "<HTML><meta charset=\"UTF-8\"><HEAD>\n");
   fprintf(cgiOut, "<style>.center{margin:auto;width:35%%;}</style>\n");//设置页面居中和div标签。
-  fprintf(cgiOut, "<TITLE>cgic test</TITLE></HEAD>\n");
+  fprintf(cgiOut, "<TITLE>学生管理系统</TITLE></HEAD>\n");
   fprintf(cgiOut, "<BODY text-align:center><h1 style=\"color:gainsboro;text-align:center;\">学生管理系统</h1>\n");//设置字体颜色居中。
   fprintf(cgiOut, "<body background=\"http://i2.buimg.com/1949/6dd97566eb0f50eb.jpg\">");//设置背景图片
   fprintf(cgiOut, "<body oncontextmenu=\"return false\" onselectstart=\"return false\">\n");//设置页面不能被复制。
@@ -225,7 +225,7 @@ void show() {
 			temp = result;
       fprintf(cgiOut, "<div class=\"center\">\n");
 			fprintf(cgiOut, "<h2 style=\"color:lime\">学生成绩表格</h2>");
-			printf("<table border=\"1\" bgcolor=\"red\" width=\"600\" height=\"400\">");       //设置表格大小颜色
+			printf("<table border=\"1\" bgcolor=\"red\" width=\"600\"");       //设置表格大小颜色
 			for(i = 0;i < nrow + 1;i++){
 				printf("<tr>");
 				for(j = 0;j < ncolumn;j++){
