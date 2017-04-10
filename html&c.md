@@ -148,7 +148,7 @@ cgiFormResultType   cgiFormString(char *name, char *result, int max);
 ```c
 int fprintf(FILE *stream, const char *format, ...);
 功能： 将格式化的语句输出到指定的流
-fprintf(stdin, "helloworld\n")  等价于 printf("helloworld\n);
+fprintf(stdin, "helloworld\n")  等价于 printf("helloworld\n");
 ```
 ### 补充函数atoi
 ```c
