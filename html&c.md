@@ -134,7 +134,7 @@ int main(void)
 复制图片中第一个链接地址
 ![压缩包](http://p1.bqimg.com/1949/7d54f3cd7037b4b2.png)
 在终端用wget -c 加链接下载链接的压缩包
-最后用tar xvf指令解压压缩包
+最后用tar -xvf指令解压压缩包
 ### 获取表单数据
 ```c
 cgiFormResultType   cgiFormString(char *name, char *result, int max);
