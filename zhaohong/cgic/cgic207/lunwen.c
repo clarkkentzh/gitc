@@ -23,7 +23,7 @@ void wen();
 void show();
 void guang();
 void kong();
-int a,b,c,d;
+int a,b,c,d,e;
 
 int cgiMain(){
   cgiHeaderContentType("text/html");
@@ -62,9 +62,7 @@ score integer not null)",NULL,NULL,&errmsg)) != SQLITE_OK){
     return -1;
     }
   }*/
-  wen();
-  fprintf(cgiOut,"<br>");
-  guang();
+
   //sqlite3_close(db);
 }
 
@@ -109,16 +107,24 @@ void guang(){
     fprintf(cgiOut,"亮度正常");
   }
   else{
-    fprintf(cgiOut,"亮度较暗");
+    fprintf(cgiOut,"光线较暗");
     c = 1;
   }
 }
 
 void kong(){
   char si[10];
+  char st[10];
+  char sd[10];
 
   cgiFormString("kong",si,10);
+  cgiFormString("kongtiao",st,10);
+  cgiFormString("deng",sd,10);
+
   a = atoi(si);
+  d = atoi(st);
+  e = atoi(sd);
+
   if(a == 1){
     if(b == 1){
       fprintf(cgiOut,"<h4 style=\"color:red\">是否打开空调：<br>");
@@ -157,6 +163,13 @@ void show(){
   fprintf(cgiOut, "</h2>");
   if(cgiFormSubmitClicked("save") == cgiFormSuccess){
     kong();
+    if(d == 1){
+      fprintf(cgiOut,"开空调");
+    }
+    fprintf(cgiOut,"<br>");
+    if(e == 1){
+      fprintf(cgiOut,"打开灯");
+    }
   }
   fprintf(cgiOut,"<br>");
   fprintf(cgiOut, "<input type=\"submit\" name=\"save\" value=\"查看\" style=\"background:DarkOliveGreen;width:150px\">\n");
