@@ -209,7 +209,7 @@ void show() {
 
   	}                        //创建数据库
 
-  	if((ret = sqlite3_exec(db,"create table stu(id integer,name vchar(32) not null,\
+  	/*if((ret = sqlite3_exec(db,"create table stu(id integer,name vchar(32) not null,\
   	score integer not null)",NULL,NULL,&errmsg)) != SQLITE_OK){
 
   		if(ret != 1){
@@ -217,7 +217,7 @@ void show() {
   			sqlite3_close(db);
 
   		}
-  	}                       //创建表
+  	} */                      //创建表
 		if(sqlite3_get_table(db,"select * from stu order by id",&result,&nrow,&ncolumn,&errmsg) != SQLITE_OK){
 			printf("%s\n",errmsg);
 		}
