@@ -23,15 +23,16 @@ void wen();
 void show();
 void guang();
 void kong();
-int a,b,c,d,e;
+int a=2,b,c,d,e;
 
 int cgiMain(){
   cgiHeaderContentType("text/html");
   fprintf(cgiOut, "<HTML><meta charset=\"UTF-8\"><HEAD>\n");
-  fprintf(cgiOut, "<style>.center{margin:auto;width:15%%;}</style>\n");
+  fprintf(cgiOut, "<style>* {margin:o;padding:0;} .center{margin:auto;width:100%%;}</style>\n");
   fprintf(cgiOut, "<TITLE>智能家具控制系统</TITLE></HEAD>\n");
-  fprintf(cgiOut, "<BODY text-align:center><h1 style=\"color:gainsboro;text-align:center;\">基于STM32的智能家居控制系统</h1>\n");
-  fprintf(cgiOut, "<body background=\"http://i2.buimg.com/1949/6dd97566eb0f50eb.jpg\">");
+  fprintf(cgiOut, "<BODY style=\"background:#f2f2f2\">");
+  fprintf(cgiOut,"<h1 style=\"width:1274px;height:199px;margin:auto;color:orange;text-align:center;background:url(http://i4.buimg.com/1949/9ca73c3afcf78afc.png) no-repeat;\">基于STM32的智能家居控制系统</h1>\n");
+  fprintf(cgiOut, "<div style=\"width:1274px;height:500px;margin:auto;\">");
   if(hong()){
     show();
   }
@@ -84,15 +85,15 @@ void wen(){
   i = atoi(wen);
 
   if(i >= 25){
-    fprintf(cgiOut,"温度过高");
+    fprintf(cgiOut,"<font style=\"color:red\">温度过高</font>");
     b = 1;
   }
   else if(i <= 18){
-    fprintf(cgiOut,"温度过低");
+    fprintf(cgiOut,"<font style=\"color:red\">温度过低</font>");
     b = 1;
   }
   else{
-    fprintf(cgiOut,"温度正常");
+    fprintf(cgiOut,"<font style=\"color:green\">温度正常</font>");
   }
 }
 
@@ -127,13 +128,13 @@ void kong(){
 
   if(a == 1){
     if(b == 1){
-      fprintf(cgiOut,"<h4 style=\"color:red\">是否打开空调：<br>");
+      fprintf(cgiOut,"<h4 align=\"center\" style=\"color:red\">是否打开空调：<br>");
       fprintf(cgiOut,"YES:<input type=\"radio\" name=\"kongtiao\" value=\"1\">");
       fprintf(cgiOut,"NO:<input type=\"radio\" name=\"kongtiao\" value=\"2\">");
       fprintf(cgiOut,"</h4>");
     }
     if(c == 1){
-      fprintf(cgiOut,"<h4 style=\"color:red\">是否打开照明灯：<br>");
+      fprintf(cgiOut,"<h4 align=\"center\" style=\"color:red\">是否打开照明灯：<br>");
       fprintf(cgiOut,"YES:<input type=\"radio\" name=\"deng\" value=\"1\">");
       fprintf(cgiOut,"NO:<input type=\"radio\" name=\"deng\" value=\"2\">");
       fprintf(cgiOut,"</h4>");
@@ -148,31 +149,40 @@ void show(){
   fprintf(cgiOut, "	action=\"");
   cgiValueEscape(cgiScriptName);
   fprintf(cgiOut, "\">\n");
-  fprintf(cgiOut, "<h2><font color=\"lime\">温度 :</font><input type=\"text\" name=\"wen\" size=\"3\"></h2>\n");
+  fprintf(cgiOut, "<h2 style=\"width:1000px;text-align:center;margin:auto;\"><font color=\"black\">温度 :</font><input type=\"text\" name=\"wen\" size=\"3\"><font color=\"black\"></h2>\n");
+  fprintf(cgiOut, "<div align=\"center\">");
   if(cgiFormSubmitClicked("save") == cgiFormSuccess){
     wen();
   }
+  fprintf(cgiOut, "</div>");
   fprintf(cgiOut,"<br>");
-  fprintf(cgiOut, "<h2><font color=\"lime\">亮度 :</font><input type=\"text\" name=\"guang\" size=\"3\"></h2>\n");
-  if(cgiFormSubmitClicked("save") == cgiFormSuccess){
-    guang();
-  }
+  // fprintf(cgiOut, "<h2><font color=\"black\">亮度 :</font><input type=\"text\" name=\"guang\" size=\"3\"></h2>\n");
+  fprintf(cgiOut, "<div align=\"center\">");
+  // if(cgiFormSubmitClicked("save") == cgiFormSuccess){
+  //   guang();
+  // }
+  fprintf(cgiOut, "</div>");
   fprintf(cgiOut, "<br><br>");
-  fprintf(cgiOut, "<h2>自动控制:<input type=\"radio\" name=\"kong\" value=\"0\"></h2>");
-  fprintf(cgiOut, "<h2>手动控制:<input type=\"radio\" name=\"kong\" value=\"1\">");
+  fprintf(cgiOut, "<h2 style=\"text-align:center;\">自动控制:<input type=\"radio\" name=\"kong\" value=\"0\"></h2>");
+  fprintf(cgiOut, "<h2 style=\"text-align:center;\">手动控制:<input type=\"radio\" name=\"kong\" value=\"1\">");
   fprintf(cgiOut, "</h2>");
   if(cgiFormSubmitClicked("save") == cgiFormSuccess){
     kong();
     if(d == 1){
-      fprintf(cgiOut,"开空调");
+      fprintf(cgiOut,"<h1 align=\"center\" style=\"color:blue\">空调已打开</h1>");
+    // fprintf(cgiOut, "<script>
+    //   alert(\"开空调\");
+    //   </script>");
     }
     fprintf(cgiOut,"<br>");
-    if(e == 1){
-      fprintf(cgiOut,"打开灯");
-    }
+    // if(e == 1){
+    //   fprintf(cgiOut,"打开灯");
+    // }
   }
   fprintf(cgiOut,"<br>");
-  fprintf(cgiOut, "<input type=\"submit\" name=\"save\" value=\"查看\" style=\"background:DarkOliveGreen;width:150px\">\n");
+  fprintf(cgiOut, "<div align=\"center\"><input margin=\"auto\" type=\"submit\" name=\"save\" value=\"查看\" style=\"background:DarkOliveGreen;width:150px\"></div>\n");
+  //fprintf(cgiOut,"<a href=\"./mycgi1\">试试</a>");
   fprintf(cgiOut, "</form>\n");
+  fprintf(cgiOut, "</div>");
   fprintf(cgiOut, "</div>");
 }

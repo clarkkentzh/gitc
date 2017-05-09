@@ -238,7 +238,8 @@ void show() {
 		sqlite3_free_table(result);
 	  sqlite3_close(db);
     fprintf(cgiOut, "<br>");
-    fprintf(cgiOut, "<input type=\"button\" onclick=\"window.location.href=\'http://localhost/cgi-bin/mycgi1\'\" value=\"返回\">");           //设置链接按钮
+    fprintf(cgiOut, "<input type=\"button\" onclick=\"window.location.href=\'http://localhost/cgi-bin/mycgi1\'\" value=\"返回\">");
+    //fprintf(cgiOut,"<a href=\"http://localhost/cgi-bin/mycgi1\">返回</a>");         //设置链接按钮
     fprintf(cgiOut, "</div>\n");
 }
 
