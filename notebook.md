@@ -221,7 +221,7 @@ _You_ **can** _commit them_
 ![图片名](图片的链接)    
 ```
 ### 效果：
-* [Pro Git] (https://git-scm.com/book/en/v2)
+* [Pro Git](https://git-scm.com/book/en/v2)
 
 ![美女](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489502275724&di=98842843e9cb7283ebc45bdd18d25c1a&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201511%2F15%2F20151115175457_XsWGu.jpeg)
 ## 5. 代码示例
